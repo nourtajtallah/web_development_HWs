@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registering data for employment at the company</title>
+</head>
+
+<body>
+
+    <h2>Registering data for employment at the company</h2>
+
+    <form enctype="multipart/form-data">
+
+        <div>
+            <label for="fullname">Fullname</label>
+            <input type="text" name="fullname" id="fullname" placeholder="The name is triple">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" step="0.1">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="Phone">Phone</label>
+            <input type="tel" name="Phone" id="Phone" placeholder="+972-XXX-XXX-XXX">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="datetime">Datetime</label>
+            <input type="datetime-local" name="datetime" id="datetime">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="time">Time</label>
+            <input type="time" name="time" id="time">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="average">Cumulative average</label>
+            <input type="number" name="average" id="average" required>
+        </div>
+
+        <br>
+
+        <div>
+            <p>Programming Languages:</p>
+
+            <label for="cpp">C++</label>
+            <input type="checkbox" name="skills" id="cpp" value="c++">
+
+            <label for="php">PHP</label>
+            <input type="checkbox" name="skills" id="php" value="php">
+
+            <label for="js">JS</label>
+            <input type="checkbox" name="skills" id="js" value="js">
+
+            <label for="python">Python</label>
+            <input type="checkbox" name="skills" id="python" value="python">
+
+            <label for="java">Java</label>
+            <input type="checkbox" name="skills" id="java" value="java">
+
+            <label for="dart">Dart</label>
+            <input type="checkbox" name="skills" id="dart" value="dart">
+        </div>
+
+        <br>
+
+        <div>
+            <p>Gender</p>
+
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="male" value="male">
+
+            <label for="female">Female</label>
+            <input type="radio" name="gender" id="female" value="female">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="volume">Volume:</label>
+            <input type="range" id="volume" name="volume" min="0" max="100" value="50" step="10">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="..........@gmail.com">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="AcademicLevel">Academic level</label>
+
+            <select id="AcademicLevel" name="AcademicLevel">
+                <option value="High school diploma">High school diploma</option>
+                <option value="Bachelor's degree">Bachelor's degree</option>
+                <option value="Master's degree">Master's degree</option>
+                <option value="PhD">PhD</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="language">Language</label>
+
+            <select id="language" name="language">
+                <option value="arabic">Arabic</option>
+                <option value="English">English</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="Specialization">Specialization</label>
+
+            <select id="Specialization" name="Specialization">
+
+                <optgroup label="Engineering">
+
+                    <option value="Information Security Engineering">
+                        Information Security Engineering
+                    </option>
+
+                    <option value="Computer Engineering and Intelligent Systems">
+                        Computer Engineering and Intelligent Systems
+                    </option>
+
+                    <option value="Cybersecurity Engineering">
+                        Cybersecurity Engineering
+                    </option>
+
+                    <option value="Artificial Intelligence Engineering">
+                        Artificial Intelligence Engineering
+                    </option>
+
+                </optgroup>
+
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="file">Upload CV</label>
+            <input type="file" name="file" id="file" accept=".pdf">
+        </div>
+
+        <br>
+
+        <div>
+            <label>Audio Sample</label>
+
+            <audio controls>
+                <source src="sample.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <br>
+
+        <div>
+            <p>Published on <time datetime="2026-05-30">May 30, 2026</time></p>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="description">Notes:</label>
+
+            <textarea name="description" id="description" rows="20" cols="40"></textarea>
+        </div>
+
+        <br>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
