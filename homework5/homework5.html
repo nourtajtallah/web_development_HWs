@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة هبوط احترافية متكاملة</title>
+    <style>
+        /* إعدادات الخطوط والصفحة العامة */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           1. الهيدر (Navbar) - تطبيق الـ Flexbox
+           ========================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            /* توزيع العناصر على الأطراف */
+            align-items: center;
+            /* محاذاة عمودية في المنتصف */
+            background-color: #ffffff;
+            padding: 20px 8%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            /* المسافة بين الروابط */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        .btn-nav {
+            background-color: #4f46e5;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           2. القسم الرئيسي (Hero Section) - تطبيق CSS Grid
+           ========================================== */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* تقسيم القسم لعمودين متساويين */
+            align-items: center;
+            gap: 40px;
+            padding: 80px 8%;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ffffff 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        /* استخدام Flexbox لتنسيق الأزرار داخل الـ Hero */
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #4f46e5;
+            border: 2px solid #4f46e5;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #4338ca;
+        }
+
+        /* ==========================================
+           تعديل: تصميم الرسوم المتحركة البديلة للصورة (CSS Illustration)
+           ========================================== */
+        .hero-graphic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        /* الدوائر المتحركة في الخلفية */
+        .bg-circle {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(147, 51, 234, 0.1));
+            border-radius: 50%;
+            animation: float-bg 6s infinite ease-in-out;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: 10px;
+            right: 10px;
+        }
+
+        .circle-2 {
+            width: 180px;
+            height: 180px;
+            bottom: 20px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        /* لوحة الشاشة البرمجية */
+        .code-window {
+            width: 100%;
+            max-width: 450px;
+            height: 280px;
+            background-color: #1e1e2e;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #313244;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 3;
+            animation: float-window 4s infinite ease-in-out;
+        }
+
+        /* شريط التحكم العلوي للنافذة */
+        .window-header {
+            height: 35px;
+            background-color: #11111b;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            gap: 8px;
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background-color: #f38ba8; }
+        .dot-yellow { background-color: #f9e2af; }
+        .dot-green { background-color: #a6e3a1; }
+
+        /* الأسطر البرمجية داخل النافذة */
+        .window-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .code-line {
+            height: 10px;
+            border-radius: 4px;
+            background-color: #cdd6f4;
+            opacity: 0.15;
+            animation: pulse-line 2s infinite ease-in-out;
+        }
+
+        .line-1 { width: 40%; background-color: #cba6f7; opacity: 0.8; }
+        .line-2 { width: 75%; background-color: #89b4fa; opacity: 0.8; animation-delay: 0.4s; margin-left: auto; }
+        .line-3 { width: 60%; background-color: #a6e3a1; opacity: 0.8; animation-delay: 0.8s; margin-left: auto; }
+        .line-4 { width: 90%; background-color: #f9e2af; opacity: 0.8; animation-delay: 1.2s; }
+        .line-5 { width: 45%; background-color: #f38ba8; opacity: 0.8; animation-delay: 1.6s; }
+
+        /* أنيميشن الحركات */
+        @keyframes float-window {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes float-bg {
+            0%, 100% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(-10px, 10px); }
+        }
+
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        /* ==========================================
+           3. قسم الكروت والمميزات - تطبيق CSS Grid
+           ========================================== */
+        .features-section {
+            padding: 80px 8%;
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        /* شبكة الكروت بالـ Grid لضمان التجاوب والتناسق التلقائي */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* مرونة عالية حسب حجم الشاشة */
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: #4f46e5;
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        /* ==========================================
+           4. الفوتر (Footer) - تطبيق الـ Flexbox
+           ========================================== */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1f2937;
+            color: #9ca3af;
+            padding: 30px 8%;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* ==========================================
+           5. الاستجابة لشاشات الهواتف المحمولة (Responsive)
+           ========================================== */
+        @media (max-width: 768px) {
+
+            /* تحويل الـ Grid الخاص بالـ Hero ليكون عمود واحد في الموبايل */
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-graphic-container {
+                height: 320px;
+                order: -1;
+                /* رفع العنصر الرسومي للأعلى في شاشات الموبايل */
+            }
+
+            /* تحويل الهيدر ليتناسب عمودياً في الهواتف */
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">شعارنا</div>
+        <nav class="nav-links">
+            <a href="#">الرئيسية</a>
+            <a href="#features">المميزات</a>
+            <a href="#services">خدماتنا</a>
+            <a href="#contact">اتصل بنا</a>
+        </nav>
+        <button class="btn-nav">ابدأ الآن</button>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>انطلق بمشروعك إلى مستويات جديدة</h1>
+            <p>نحن نقدم الحلول التقنية الأكثر كفاءة لتطوير أعمالك وتصميم مواقعك الإلكترونية بأحدث التقنيات العالمية وبأعلى جودة.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">اكتشف المزيد</button>
+                <button class="btn-secondary">تواصل معنا</button>
+            </div>
+        </div>
+        
+        <div class="hero-graphic-container">
+            <div class="bg-circle circle-1"></div>
+            <div class="bg-circle circle-2"></div>
+            <div class="code-window">
+                <div class="window-header">
+                    <div class="window-dot dot-red"></div>
+                    <div class="window-dot dot-yellow"></div>
+                    <div class="window-dot dot-green"></div>
+                </div>
+                <div class="window-body">
+                    <div class="code-line line-1"></div>
+                    <div class="code-line line-2"></div>
+                    <div class="code-line line-3"></div>
+                    <div class="code-line line-4"></div>
+                    <div class="code-line line-5"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="section-title">
+            <h2>لماذا تختارنا?</h2>
+            <p>نقدم لك مجموعة من الخدمات الاحترافية المتكاملة لنجاحك الرقمي</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>سرعة فائقة</h3>
+                <p>تصفح سريع وتجربة مستخدم ممتازة تضمن بقاء الزوار في موقعك أطول فترة ممكنة.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>تصميم عصري</h3>
+                <p>واجهات مستخدم جذابة ومتوافقة مع جميع الشاشات والهواتف الذكية.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+                <h3>أمان حماية</h3>
+                <p>تأمين كامل للموقع والبيانات بأحدث معايير التشفير والأمان الرقمي.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h3>تحسين السيو</h3>
+                <p>تهيئة الموقع لمحركات البحث (SEO) لتظهر في النتائج الأولى دائماً.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة © 2026</p>
+        <div class="footer-links">
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">الشروط والأحكام</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
