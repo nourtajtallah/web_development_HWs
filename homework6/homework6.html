@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الأعمال المتحرك | Animated Portfolio</title>
+    
+    <style>
+        /* --- CSS Custom Properties (المتغيرات) --- */
+        :root {
+            --bg-dark-slate: #347975;    /*خلفية */
+            --bg-card: #111827;          /* خلفية الكروت  */
+            --primary-indigo: #0a045e;   /* لون النيون */
+            --primary-hover: #6366f1;
+            --accent-cyan: #06b6d4;      /* لون سماوي */
+            --text-main: #f3f4f6;        /* نصوص فاتحة */
+            --text-muted: #9ca3af;       /* نصوص فرعية */
+            --border-color: rgba(255, 255, 255, 0.05);
+            
+            /*(Glow Effects) */
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+            --glow-indigo: 0 0 20px rgba(80, 70, 230, 0.3);
+            --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* --- تصفيرإعدادات الصفحة العامة --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark-slate);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 80px 0;
+        }
+
+        /* --- (Portfolio Section) --- */
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* أنيميشن العناوين */
+        .portfolio-header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .portfolio-header p {
+            color: var(--text-muted);
+            font-size: 17px;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0; 
+        }
+
+        /* توزيع العناصر باستخدام CSS Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            perspective: 1000px; /* يعطي عمقاً حركياً ثلاثي الأبعاد للكروت */
+        }
+
+        /* --- (Portfolio Card) --- */
+        .portfolio-card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            text-align: right;
+            position: relative;
+            
+            /* تطبيق الـ Transitions والـ Transforms الأساسية */
+            transform: translateY(0) rotateX(0) rotateY(0);
+            transform-style: preserve-3d;
+            transition: transform var(--transition-smooth), 
+                        box-shadow var(--transition-smooth), 
+                        border-color var(--transition-smooth);
+        }
+
+        /* (Hover Effects) */
+        .portfolio-card:hover {
+            transform: translateY(-10px) rotateX(4deg) rotateY(-2deg);
+            box-shadow: var(--card-shadow), var(--glow-indigo);
+            border-color: rgba(80, 70, 230, 0.4);
+        }
+
+        /* الأيقونة الدلالية للوحة البيانات */
+        .card-image-box {
+            height: 220px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            overflow: hidden;
+        }
+
+        /* تأثير خطوط النيون المتحركة خلف أيقونة الكارت */
+        .card-image-box::before {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            background: var(--primary-indigo);
+            filter: blur(40px);
+            opacity: 0.3;
+            transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+        }
+
+        .portfolio-card:hover .card-image-box::before {
+            transform: scale(2);
+            opacity: 0.5;
+        }
+
+        /* محتوى  الكارت */
+        .card-body {
+            padding: 30px;
+            position: relative;
+            transform: translateZ(30px); 
+        }
+
+        /* تصنيفات وتأثير الـ Pulse */
+        .card-tag {
+            display: inline-block;
+            background-color: rgba(80, 70, 230, 0.15);
+            color: #a5b4fc;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            border: 1px solid rgba(80, 70, 230, 0.2);
+            transition: all var(--transition-smooth);
+        }
+
+        .portfolio-card:hover .card-tag {
+            background-color: var(--primary-indigo);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(80, 70, 230, 0.5);
+        }
+
+        .card-body h3 {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            transition: color var(--transition-smooth);
+        }
+
+        .portfolio-card:hover .card-body h3 {
+            color: var(--accent-cyan--)
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+            margin-bottom: 25px;
+            height: 68px;
+            overflow: hidden;
+        }
+
+        /* سهم الحركة الانسيابي */
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-indigo);
+            font-weight: 700;
+            font-size: 14px;
+            transition: color var(--transition-smooth);
+        }
+
+        .project-link span {
+            display: inline-block;
+            transition: transform var(--transition-smooth);
+        }
+
+        /* Hover */
+        .portfolio-card:hover .project-link {
+            color: var(--primary-hover);
+        }
+
+        .portfolio-card:hover .project-link span {
+            transform: translateX(-6px); /* يتحرك باتجاه اليسار ليناسب القراءة العربية */
+        }
+
+        /* --- (Keyframes) --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- تجاوب التصميم مع الشاشات الصغيرة --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 50px 0;
+            }
+            .portfolio-header h1 {
+                font-size: 30px;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="portfolio-container">
+        
+        <div class="portfolio-header">
+            <h1>معرض لوحات التحكم والمشاريع التفاعلية</h1>
+            <p>مجموعة من الأنظمة التحليلية المبنية لمعالجة وفحص البيانات الضخمة وتحويلها إلى قرارات ذكية قابلة للتطبيق الفوري.</p>
+        </div>
+
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-card">
+                <div class="card-image-box">
+                    📊
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">تحليل سوق العمل</span>
+                    <h3>منصة ذكاء المهن التقنية</h3>
+                    <p>ربط متقدم لبيانات الرواتب العالمية مع توجهات وظائف LinkedIn لمساعدة الخريجين في اقتناص أفضل الفرص.</p>
+                    <a href="#" class="project-link">استكشف لوحة التحكم <span>←</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-image-box" style="background: linear-gradient(135deg, #022c22 0%, #0f172a 100%);">
+                    🌱
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="background-color: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); border-color: rgba(6, 182, 212, 0.2)">الطاقة والمناخ</span>
+                    <h3>تحول الطاقة العالمي 2030</h3>
+                    <p>رصد الانبعاثات الكربونية الكلية ومتابعة نسب الاعتماد على مصادر الطاقة المتجددة عبر خرائط زمنية متحركة.</p>
+                    <a href="#" class="project-link" style="color: var(--accent-cyan);">استكشف لوحة التحكم <span>←</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-image-box" style="background: linear-gradient(135deg, #431407 0%, #0f172a 100%);">
+                    🏆
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2)">الأداء الرياضي</span>
+                    <h3>التحليلات الأولمبية التاريخية</h3>
+                    <p>دراسة إحصائية على مدار 120 عاماً تربط حصد الميداليات بالمؤشرات الاقتصادية والنمو السكاني للدول.</p>
+                    <a href="#" class="project-link" style="color: #f59e0b;">استكشف لوحة التحكم <span>←</span></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
